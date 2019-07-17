@@ -26,6 +26,8 @@ int main()
         return -1;
     }
 
+    printf("Create shared memory page with id: %d\n",shmid);
+
 
     ptr=shmat(shmid,NULL,0);
 
@@ -53,6 +55,10 @@ int main()
     semop(semid,&unlock2,1);
 
     semctl(semid,0,IPC_RMID);
+
+    shmctl(shmid,0,IPC_RMID);
+
+    printf("Remove shared memory page with id: %d\n",shmid);
 
     return 0;
 }
